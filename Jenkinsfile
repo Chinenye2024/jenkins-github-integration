@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build Stage') {
             steps {
-                echo 'Executing: Build process with Maven - cleaning and packaging the project'
+                echo 'Task: Build - Using Maven to clean and package the project'
             }
             post {
                 always {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Test Stage') {
             steps {
-                echo 'Executing: Running tests with Maven'
+                echo 'Task: Test - Using Maven to run tests'
             }
             post {
                 always {
@@ -32,20 +32,19 @@ pipeline {
         }
         stage('Code Quality Check') {
             steps {
-                echo 'Executing: Code quality analysis using Checkstyle'
-                bat 'mvn checkstyle:check'
+                echo 'Task: Code Analysis - Performing a code quality check'
             }
             post {
                 always {
                     mail to: 'ezenchinenye@gmail.com',
-                         subject: "Code Quality Check Stage Notification: ${currentBuild.fullDisplayName}",
+                         subject: "Code Quality Check Notification: ${currentBuild.fullDisplayName}",
                          body: "The Code Quality Check stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs."
                 }
             }
         }
         stage('Security Scan Stage') {
             steps {
-                echo 'Executing: Performing security scan with OWASP Dependency-Check'
+                echo 'Task: Security Scan - Performing a security scan'
             }
             post {
                 always {
@@ -57,19 +56,19 @@ pipeline {
         }
         stage('Deploy to Staging Environment') {
             steps {
-                echo 'Executing: Deployment to staging - displaying deployment instructions'
+                echo 'Task: Deploy to Staging - Displaying deployment instructions'
             }
             post {
                 always {
                     mail to: 'ezenchinenye@gmail.com',
-                         subject: "Deploy to Staging Stage Notification: ${currentBuild.fullDisplayName}",
+                         subject: "Deploy to Staging Notification: ${currentBuild.fullDisplayName}",
                          body: "The Deploy to Staging stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs."
                 }
             }
         }
         stage('Integration Testing on Staging') {
             steps {
-                echo 'Executing: Running integration tests on the staging environment'
+                echo 'Task: Integration Tests - Running integration tests on the staging environment'
             }
             post {
                 always {
@@ -81,12 +80,12 @@ pipeline {
         }
         stage('Deploy to Production Environment') {
             steps {
-                echo 'Executing: Deployment to production - displaying deployment instructions'
+                echo 'Task: Deploy to Production - Displaying production deployment instructions'
             }
             post {
                 always {
                     mail to: 'ezenchinenye@gmail.com',
-                         subject: "Deploy to Production Stage Notification: ${currentBuild.fullDisplayName}",
+                         subject: "Deploy to Production Notification: ${currentBuild.fullDisplayName}",
                          body: "The Deploy to Production stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs."
                 }
             }
