@@ -33,7 +33,7 @@ pipeline {
         stage('Code Quality Check') {
             steps {
                 echo 'Executing: Code quality analysis using Checkstyle'
-                sh 'mvn checkstyle:check'
+                bat 'mvn checkstyle:check'
             }
             post {
                 always {
