@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('Build Stage') {
             steps {
-                echo 'Task: Build - Print Maven clean and package steps'
+                echo 'Task: Build - Using Maven to clean and package the project'
                 bat 'echo mvn clean package > build_stage.log' // Simulating log generation
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Build Stage Notification: ${currentBuild.fullDisplayName}",
                             body: "The Build stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -21,12 +21,12 @@ pipeline {
         }
         stage('Test Stage') {
             steps {
-                echo 'Task: Test - Print Maven test steps'
+                echo 'Task: Test - Using Maven to run tests'
                 bat 'echo mvn test > test_stage.log' // Simulating log generation
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Test Stage Notification: ${currentBuild.fullDisplayName}",
                             body: "The Test stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -41,7 +41,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Code Quality Check Notification: ${currentBuild.fullDisplayName}",
                             body: "The Code Quality Check stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -56,7 +56,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Security Scan Stage Notification: ${currentBuild.fullDisplayName}",
                             body: "The Security Scan stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -71,7 +71,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Deploy to Staging Notification: ${currentBuild.fullDisplayName}",
                             body: "The Deploy to Staging stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -86,7 +86,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Integration Tests Stage Notification: ${currentBuild.fullDisplayName}",
                             body: "The Integration Tests stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -101,7 +101,7 @@ pipeline {
             }
             post {
                 always {
-                    emailext to: 'johnnerojunior@gmail.com',
+                    emailext to: 'ezenchinenye@gmail.com',
                             subject: "Deploy to Production Notification: ${currentBuild.fullDisplayName}",
                             body: "The Deploy to Production stage of the pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                             attachLog: true,
@@ -112,7 +112,7 @@ pipeline {
     }
     post {
         always {
-            emailext to: 'johnnerojunior@gmail.com',
+            emailext to: 'ezenchinenye@gmail.com',
                     subject: "Pipeline Summary: ${currentBuild.fullDisplayName}",
                     body: "The entire pipeline has completed with status: ${currentBuild.currentResult}. Please check the logs.",
                     attachLog: true,
